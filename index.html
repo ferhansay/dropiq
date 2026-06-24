@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080810">
+<title>DropIQ</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080810;
+  --s1: #0f0f1a;
+  --s2: #171725;
+  --s3: #1f1f30;
+  --border: #ffffff0f;
+  --border2: #ffffff18;
+  --text: #f0f0fa;
+  --muted: #6a6a8a;
+  --dim: #3a3a55;
+  --purple: #7c6ffa;
+  --purple2: #a78bfa;
+  --green: #34d399;
+  --red: #f87171;
+  --amber: #fbbf24;
+  --cyan: #22d3ee;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.screen { display: none; min-height: 100vh; flex-direction: column; }
+.screen.active { display: flex; }
+
+/* ===== SPLASH ===== */
+#splash {
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at 50% 35%, #1a0f3a 0%, var(--bg) 65%);
+}
+
+.splash-inner { text-align: center; padding: 40px 24px; }
+
+.splash-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: -3px;
+  background: linear-gradient(135deg, #fff 0%, var(--purple2) 55%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+  animation: fadeUp 0.8s ease both;
+}
+
+.splash-tag {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-family: 'DM Mono', monospace;
+  margin-bottom: 16px;
+  animation: fadeUp 0.8s 0.15s ease both;
+}
+
+.splash-desc {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 52px;
+  line-height: 1.6;
+  animation: fadeUp 0.8s 0.25s ease both;
+}
+
+.splash-btn {
+  padding: 16px 48px;
+  background: var(--purple);
+  border: none;
+  border-radius: 14px;
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 48px rgba(124,111,250,0.4);
+  transition: all 0.2s;
+  animation: fadeUp 0.8s 0.35s ease both;
+  letter-spacing: 0.3px;
+}
+
+.splash-btn:hover { transform: translateY(-3px); box-shadow: 0 0 64px rgba(124,111,250,0.55); }
+.splash-btn:active { transform: scale(0.97); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== ÜRÜNLER ===== */
+#urunler { background: var(--bg); }
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 0;
+}
+
+.top-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff, var(--purple2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.top-icon {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  background: var(--s2);
+  border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; cursor: pointer;
+  transition: background 0.2s;
+}
+
+.top-icon:hover { background: var(--s3); }
+
+.urunler-header { padding: 26px 20px 16px; }
+
+.urunler-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px; font-weight: 800; margin-bottom: 5px;
+}
+
+.urunler-sub { font-size: 13px; color: var(--muted); }
+
+.urunler-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+  padding: 0 20px;
+}
+
+.urun-karti {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  padding: 18px 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+  min-height: 170px;
+}
+
+.urun-karti::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  border-radius: 20px 20px 0 0;
+}
+
+.uk-1::before { background: linear-gradient(90deg, var(--purple), var(--cyan)); }
+.uk-2::before { background: linear-gradient(90deg, var(--green), var(--cyan)); }
+.uk-3::before { background: linear-gradient(90deg, var(--amber), var(--red)); }
+
+.urun-karti:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.15); }
+.urun-karti:active { transform: scale(0.97); }
+
+.urun-karti.ekle {
+  border: 1.5px dashed var(--dim);
+  background: transparent;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px;
+}
+
+.urun-karti.ekle:hover { border-color: var(--purple); }
+
+.ekle-ikon {
+  width: 44px; height: 44px;
+  border-radius: 14px;
+  background: var(--s2);
+  border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; color: var(--purple);
+  transition: all 0.2s;
+}
+
+.urun-karti.ekle:hover .ekle-ikon {
+  background: rgba(124,111,250,0.15);
+  border-color: var(--purple);
+}
+
+.ekle-yazi { font-size: 13px; color: var(--muted); font-weight: 500; }
+
+.urun-emoji { font-size: 28px; margin-bottom: 9px; }
+
+.urun-adi {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px; font-weight: 700; margin-bottom: 2px;
+}
+
+.urun-kat { font-size: 10px; color: var(--muted); margin-bottom: 11px; font-family: 'DM Mono', monospace; }
+
+.urun-stat {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  font-size: 10px; margin-bottom: 4px;
+}
+
+.stat-etiket { color: var(--muted); display: flex; align-items: center; gap: 4px; }
+.stat-deger { font-family: 'DM Mono', monospace; font-weight: 500; }
+
+.durum-nokta {
+  display: inline-block;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+}
+
+/* Sistem kartı */
+.sistem-karti {
+  margin: 14px 20px 0;
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 16px;
+  padding: 14px 16px;
+  display: flex; gap: 13px; align-items: center;
+}
+
+.sistem-ikon { font-size: 24px; flex-shrink: 0; }
+
+.sistem-baslik { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+.sistem-alt { font-size: 11px; color: var(--muted); }
+
+/* Yeni ürün modal */
+.modal-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 200;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.modal-overlay.acik { display: flex; }
+
+.modal {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 24px 24px 0 0;
+  padding: 24px 20px 40px;
+  width: 100%;
+  max-width: 480px;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.modal-baslik {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px; font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.form-grup { margin-bottom: 14px; }
+
+.form-etiket {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 7px;
+  display: block;
+}
+
+.form-input {
+  width: 100%;
+  background: var(--s2);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus { border-color: var(--purple); }
+.form-input::placeholder { color: var(--muted); }
+
+.emoji-secici {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+
+.emoji-btn {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--s2);
+  border: 1px solid var(--border2);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+
+.emoji-btn.secili {
+  border-color: var(--purple);
+  background: rgba(124,111,250,0.15);
+}
+
+.pazar-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 7px;
+}
+
+.pazar-btn {
+  padding: 8px 6px;
+  border-radius: 9px;
+  border: 1px solid var(--border2);
+  background: var(--s2);
+  color: var(--muted);
+  font-size: 11px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.pazar-btn.secili {
+  border-color: var(--purple);
+  color: var(--purple2);
+  background: rgba(124,111,250,0.15);
+}
+
+.modal-btn {
+  width: 100%;
+  padding: 15px;
+  background: var(--purple);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: opacity 0.2s;
+}
+
+.modal-btn:hover { opacity: 0.9; }
+
+.modal-iptal {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div class="screen active" id="splash">
+  <div class="splash-inner">
+    <div class="splash-logo">DropIQ</div>
+    <div class="splash-tag">Akıllı Dropshipping Sistemi</div>
+    <div class="splash-desc">Ürün araştırma, video analiz,<br>rakip takibi ve öğrenen sistem</div>
+    <button class="splash-btn" onclick="ekranaGit('urunler')">Başla →</button>
+  </div>
+</div>
+
+<!-- ÜRÜNLER -->
+<div class="screen" id="urunler">
+  <div class="top-bar">
+    <div class="top-logo">DropIQ</div>
+    <div class="top-icon">⚙️</div>
+  </div>
+
+  <div class="urunler-header">
+    <div class="urunler-title">Ürünlerin</div>
+    <div class="urunler-sub">Analiz etmek istediğin ürünü seç</div>
+  </div>
+
+  <div class="urunler-grid" id="urunlerGrid">
+
+    <div class="urun-karti uk-1" onclick="ekranaGit('panel')">
+      <div class="urun-emoji">👶</div>
+      <div class="urun-adi">Momera</div>
+      <div class="urun-kat">Bebek Taşıyıcı · 🇺🇸 ABD</div>
+      <div class="urun-stat">
+        <span class="stat-etiket"><span class="durum-nokta" style="background:var(--green)"></span>Aktif</span>
+        <span class="stat-deger" style="color:var(--green)">48.2K</span>
+      </div>
+      <div class="urun-stat">
+        <span class="stat-etiket">Hook Oranı</span>
+        <span class="stat-deger" style="color:var(--purple2)">%64</span>
+      </div>
+      <div class="urun-stat">
+        <span class="stat-etiket">ROAS</span>
+        <span class="stat-deger" style="color:var(--amber)">2.1x</span>
+      </div>
+    </div>
+
+    <div class="urun-karti uk-2" onclick="ekranaGit('panel')">
+      <div class="urun-emoji">💆</div>
+      <div class="urun-adi">Vibit</div>
+      <div class="urun-kat">Masaj Aleti · 🇺🇸 ABD</div>
+      <div class="urun-stat">
+        <span class="stat-etiket"><span class="durum-nokta" style="background:var(--amber)"></span>Test</span>
+        <span class="stat-deger" style="color:var(--amber)">12.4K</span>
+      </div>
+      <div class="urun-stat">
+        <span class="stat-etiket">Hook Oranı</span>
+        <span class="stat-deger" style="color:var(--green)">%71</span>
+      </div>
+      <div class="urun-stat">
+        <span class="stat-etiket">ROAS</span>
+        <span class="stat-deger" style="color:var(--green)">3.4x</span>
+      </div>
+    </div>
+
+    <div class="urun-karti uk-3" onclick="ekranaGit('panel')">
+      <div class="urun-emoji">⚡</div>
+      <div class="urun-adi">Noxa</div>
+      <div class="urun-kat">Masaj Kemeri · 🇺🇸 ABD</div>
+      <div class="urun-stat">
+        <span class="stat-etiket"><span class="durum-nokta" style="background:var(--red)"></span>Düşük</span>
+        <span class="stat-deger" style="color:var(--red)">3.1K</span>
+      </div>
+      <div class="urun-stat">
+        <span class="stat-etiket">Hook Oranı</span>
+        <span class="stat-deger" style="color:var(--red)">%31</span>
+      </div>
+      <div class="urun-stat">
+        <span class="stat-etiket">ROAS</span>
+        <span class="stat-deger" style="color:var(--red)">0.8x</span>
+      </div>
+    </div>
+
+    <div class="urun-karti ekle" onclick="modalAc()">
+      <div class="ekle-ikon">+</div>
+      <div class="ekle-yazi">Yeni Ürün Ekle</div>
+    </div>
+
+  </div>
+
+  <div class="sistem-karti">
+    <div class="sistem-ikon">🧠</div>
+    <div>
+      <div class="sistem-baslik">Öğrenen sistem aktif</div>
+      <div class="sistem-alt">3 ürün · 12 video analiz edildi · 4 yeni öneri var</div>
+    </div>
+  </div>
+</div>
+
+<!-- YENİ ÜRÜN MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="modalKapat(event)">
+  <div class="modal">
+    <div class="modal-baslik">Yeni Ürün Ekle</div>
+
+    <div class="form-grup">
+      <label class="form-etiket">Ürün Adı</label>
+      <input class="form-input" id="yeniUrunAdi" placeholder="Örn: SkinGlow, FlexBand..." type="text">
+    </div>
+
+    <div class="form-grup">
+      <label class="form-etiket">Kategori</label>
+      <input class="form-input" id="yeniUrunKat" placeholder="Örn: Cilt bakım, Spor, Bebek..." type="text">
+    </div>
+
+    <div class="form-grup">
+      <label class="form-etiket">Simge Seç</label>
+      <div class="emoji-secici" id="emojiSecici">
+        <button class="emoji-btn secili" onclick="emojiSec(this, '🛍️')">🛍️</button>
+        <button class="emoji-btn" onclick="emojiSec(this, '💄')">💄</button>
+        <button class="emoji-btn" onclick="emojiSec(this, '💪')">💪</button>
+        <button class="emoji-btn" onclick="emojiSec(this, '🧴')">🧴</button>
+        <button class="emoji-btn" onclick="emojiSec(this, '👶')">👶</button>
+        <button class="emoji-btn" onclick="emojiSec(this, '🏃')">🏃</button>
+        <button class="emoji-btn" onclick="emojiSec(this, '✨')">✨</button>
+        <button class="emoji-btn" onclick="emojiSec(this, '⚡')">⚡</button>
+      </div>
+    </div>
+
+    <div class="form-grup">
+      <label class="form-etiket">Hedef Pazar</label>
+      <div class="pazar-grid">
+        <button class="pazar-btn secili" onclick="pazarSec(this)">🇺🇸 ABD</button>
+        <button class="pazar-btn" onclick="pazarSec(this)">🇬🇧 UK</button>
+        <button class="pazar-btn" onclick="pazarSec(this)">🇩🇪 Almanya</button>
+        <button class="pazar-btn" onclick="pazarSec(this)">🇫🇷 Fransa</button>
+        <button class="pazar-btn" onclick="pazarSec(this)">🇳🇱 Hollanda</button>
+        <button class="pazar-btn" onclick="pazarSec(this)">🇦🇺 Avustralya</button>
+      </div>
+    </div>
+
+    <button class="modal-btn" onclick="urunEkle()">Ürün Oluştur →</button>
+    <button class="modal-iptal" onclick="modalKapat()">İptal</button>
+  </div>
+</div>
+
+<!-- PANEL (geçici placeholder) -->
+<div class="screen" id="panel">
+  <div style="padding:20px;">
+    <button onclick="ekranaGit('urunler')" style="background:var(--s2);border:1px solid var(--border2);color:var(--text);padding:10px 16px;border-radius:10px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:20px;">← Geri</button>
+    <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:8px;">Panel yakında açılıyor...</div>
+    <div style="color:var(--muted);font-size:14px;">Bir sonraki adımda tam panel gelecek.</div>
+  </div>
+</div>
+
+<script>
+let seciliEmoji = '🛍️';
+let seciliPazar = '🇺🇸 ABD';
+
+function ekranaGit(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function modalAc() {
+  document.getElementById('modalOverlay').classList.add('acik');
+}
+
+function modalKapat(e) {
+  if (!e || e.target === document.getElementById('modalOverlay')) {
+    document.getElementById('modalOverlay').classList.remove('acik');
+  }
+}
+
+function emojiSec(el, emoji) {
+  document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('secili'));
+  el.classList.add('secili');
+  seciliEmoji = emoji;
+}
+
+function pazarSec(el) {
+  document.querySelectorAll('.pazar-btn').forEach(b => b.classList.remove('secili'));
+  el.classList.add('secili');
+  seciliPazar = el.textContent.trim();
+}
+
+function urunEkle() {
+  const ad = document.getElementById('yeniUrunAdi').value.trim();
+  const kat = document.getElementById('yeniUrunKat').value.trim();
+
+  if (!ad) { alert('Ürün adı gir!'); return; }
+
+  const renkler = ['uk-1','uk-2','uk-3'];
+  const renk = renkler[Math.floor(Math.random() * renkler.length)];
+
+  const kart = document.createElement('div');
+  kart.className = `urun-karti ${renk}`;
+  kart.onclick = () => ekranaGit('panel');
+  kart.innerHTML = `
+    <div class="urun-emoji">${seciliEmoji}</div>
+    <div class="urun-adi">${ad}</div>
+    <div class="urun-kat">${kat || 'Kategori yok'} · ${seciliPazar}</div>
+    <div class="urun-stat">
+      <span class="stat-etiket"><span class="durum-nokta" style="background:var(--muted)"></span>Yeni</span>
+      <span class="stat-deger" style="color:var(--muted)">—</span>
+    </div>
+    <div class="urun-stat">
+      <span class="stat-etiket">Hook Oranı</span>
+      <span class="stat-deger" style="color:var(--muted)">—</span>
+    </div>
+    <div class="urun-stat">
+      <span class="stat-etiket">ROAS</span>
+      <span class="stat-deger" style="color:var(--muted)">—</span>
+    </div>
+  `;
+
+  const grid = document.getElementById('urunlerGrid');
+  const ekleKarti = grid.lastElementChild;
+  grid.insertBefore(kart, ekleKarti);
+
+  document.getElementById('yeniUrunAdi').value = '';
+  document.getElementById('yeniUrunKat').value = '';
+  document.getElementById('modalOverlay').classList.remove('acik');
+}
+</script>
+</body>
+</html>
