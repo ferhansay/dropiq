@@ -1,12 +1,14 @@
+bash
+
+cat /home/claude/dropiq.html
+Output
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080810">
 <title>DropIQ</title>
-<link rel="manifest" href="manifest.json">
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -26,358 +28,249 @@
   --amber: #fbbf24;
   --cyan: #22d3ee;
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; overflow-x: hidden; }
 .screen { display: none; min-height: 100vh; flex-direction: column; }
 .screen.active { display: flex; }
 
-/* ===== SPLASH ===== */
-#splash {
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(ellipse at 50% 35%, #1a0f3a 0%, var(--bg) 65%);
-}
-
+/* SPLASH */
+#splash { align-items: center; justify-content: center; background: radial-gradient(ellipse at 50% 35%, #1a0f3a 0%, var(--bg) 65%); }
 .splash-inner { text-align: center; padding: 40px 24px; }
+.splash-logo { font-family: 'Syne', sans-serif; font-size: 64px; font-weight: 800; letter-spacing: -3px; background: linear-gradient(135deg, #fff 0%, var(--purple2) 55%, var(--cyan) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; animation: fadeUp 0.8s ease both; }
+.splash-tag { font-size: 11px; color: var(--muted); letter-spacing: 4px; text-transform: uppercase; font-family: 'DM Mono', monospace; margin-bottom: 16px; animation: fadeUp 0.8s 0.15s ease both; }
+.splash-desc { font-size: 14px; color: var(--muted); margin-bottom: 52px; line-height: 1.6; animation: fadeUp 0.8s 0.25s ease both; }
+.splash-btn { padding: 16px 48px; background: var(--purple); border: none; border-radius: 14px; color: #fff; font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 0 48px rgba(124,111,250,0.4); transition: all 0.2s; animation: fadeUp 0.8s 0.35s ease both; }
+.splash-btn:hover { transform: translateY(-3px); }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
-.splash-logo {
-  font-family: 'Syne', sans-serif;
-  font-size: 64px;
-  font-weight: 800;
-  letter-spacing: -3px;
-  background: linear-gradient(135deg, #fff 0%, var(--purple2) 55%, var(--cyan) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 10px;
-  animation: fadeUp 0.8s ease both;
-}
-
-.splash-tag {
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  font-family: 'DM Mono', monospace;
-  margin-bottom: 16px;
-  animation: fadeUp 0.8s 0.15s ease both;
-}
-
-.splash-desc {
-  font-size: 14px;
-  color: var(--muted);
-  margin-bottom: 52px;
-  line-height: 1.6;
-  animation: fadeUp 0.8s 0.25s ease both;
-}
-
-.splash-btn {
-  padding: 16px 48px;
-  background: var(--purple);
-  border: none;
-  border-radius: 14px;
-  color: #fff;
-  font-family: 'Syne', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 0 48px rgba(124,111,250,0.4);
-  transition: all 0.2s;
-  animation: fadeUp 0.8s 0.35s ease both;
-  letter-spacing: 0.3px;
-}
-
-.splash-btn:hover { transform: translateY(-3px); box-shadow: 0 0 64px rgba(124,111,250,0.55); }
-.splash-btn:active { transform: scale(0.97); }
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ===== ÜRÜNLER ===== */
+/* ÜRÜNLER */
 #urunler { background: var(--bg); }
-
-.top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 20px 0;
-}
-
-.top-logo {
-  font-family: 'Syne', sans-serif;
-  font-size: 22px;
-  font-weight: 800;
-  background: linear-gradient(135deg, #fff, var(--purple2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.top-icon {
-  width: 38px; height: 38px;
-  border-radius: 10px;
-  background: var(--s2);
-  border: 1px solid var(--border2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 17px; cursor: pointer;
-  transition: background 0.2s;
-}
-
-.top-icon:hover { background: var(--s3); }
-
+.top-bar { display: flex; align-items: center; justify-content: space-between; padding: 20px 20px 0; }
+.top-logo { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; background: linear-gradient(135deg, #fff, var(--purple2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.top-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--s2); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; font-size: 17px; cursor: pointer; }
 .urunler-header { padding: 26px 20px 16px; }
-
-.urunler-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 28px; font-weight: 800; margin-bottom: 5px;
-}
-
+.urunler-title { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; margin-bottom: 5px; }
 .urunler-sub { font-size: 13px; color: var(--muted); }
-
-.urunler-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 11px;
-  padding: 0 20px;
-}
-
-.urun-karti {
-  background: var(--s1);
-  border: 1px solid var(--border2);
-  border-radius: 20px;
-  padding: 18px 15px;
-  cursor: pointer;
-  transition: all 0.2s;
-  position: relative;
-  overflow: hidden;
-  min-height: 170px;
-}
-
-.urun-karti::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  border-radius: 20px 20px 0 0;
-}
-
+.urunler-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; padding: 0 20px; }
+.urun-karti { background: var(--s1); border: 1px solid var(--border2); border-radius: 20px; padding: 18px 15px; cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden; min-height: 170px; }
+.urun-karti::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; border-radius: 20px 20px 0 0; }
 .uk-1::before { background: linear-gradient(90deg, var(--purple), var(--cyan)); }
 .uk-2::before { background: linear-gradient(90deg, var(--green), var(--cyan)); }
 .uk-3::before { background: linear-gradient(90deg, var(--amber), var(--red)); }
-
-.urun-karti:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.15); }
+.uk-4::before { background: linear-gradient(90deg, var(--cyan), var(--purple)); }
+.urun-karti:hover { transform: translateY(-3px); }
 .urun-karti:active { transform: scale(0.97); }
-
-.urun-karti.ekle {
-  border: 1.5px dashed var(--dim);
-  background: transparent;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 10px;
-}
-
+.urun-karti.ekle { border: 1.5px dashed var(--dim); background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
 .urun-karti.ekle:hover { border-color: var(--purple); }
-
-.ekle-ikon {
-  width: 44px; height: 44px;
-  border-radius: 14px;
-  background: var(--s2);
-  border: 1px solid var(--border2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px; color: var(--purple);
-  transition: all 0.2s;
-}
-
-.urun-karti.ekle:hover .ekle-ikon {
-  background: rgba(124,111,250,0.15);
-  border-color: var(--purple);
-}
-
+.ekle-ikon { width: 44px; height: 44px; border-radius: 14px; background: var(--s2); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--purple); }
 .ekle-yazi { font-size: 13px; color: var(--muted); font-weight: 500; }
-
 .urun-emoji { font-size: 28px; margin-bottom: 9px; }
-
-.urun-adi {
-  font-family: 'Syne', sans-serif;
-  font-size: 15px; font-weight: 700; margin-bottom: 2px;
-}
-
+.urun-adi { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 2px; }
 .urun-kat { font-size: 10px; color: var(--muted); margin-bottom: 11px; font-family: 'DM Mono', monospace; }
-
-.urun-stat {
-  display: flex; align-items: center;
-  justify-content: space-between;
-  font-size: 10px; margin-bottom: 4px;
-}
-
+.urun-stat { display: flex; align-items: center; justify-content: space-between; font-size: 10px; margin-bottom: 4px; }
 .stat-etiket { color: var(--muted); display: flex; align-items: center; gap: 4px; }
 .stat-deger { font-family: 'DM Mono', monospace; font-weight: 500; }
-
-.durum-nokta {
-  display: inline-block;
-  width: 5px; height: 5px;
-  border-radius: 50%;
-}
-
-/* Sistem kartı */
-.sistem-karti {
-  margin: 14px 20px 0;
-  background: var(--s1);
-  border: 1px solid var(--border2);
-  border-radius: 16px;
-  padding: 14px 16px;
-  display: flex; gap: 13px; align-items: center;
-}
-
+.durum-nokta { display: inline-block; width: 5px; height: 5px; border-radius: 50%; }
+.sistem-karti { margin: 14px 20px 20px; background: var(--s1); border: 1px solid var(--border2); border-radius: 16px; padding: 14px 16px; display: flex; gap: 13px; align-items: center; }
 .sistem-ikon { font-size: 24px; flex-shrink: 0; }
-
 .sistem-baslik { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
 .sistem-alt { font-size: 11px; color: var(--muted); }
 
-/* Yeni ürün modal */
-.modal-overlay {
-  display: none;
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.7);
-  z-index: 200;
-  align-items: flex-end;
-  justify-content: center;
-}
-
+/* MODAL */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; align-items: flex-end; justify-content: center; }
 .modal-overlay.acik { display: flex; }
-
-.modal {
-  background: var(--s1);
-  border: 1px solid var(--border2);
-  border-radius: 24px 24px 0 0;
-  padding: 24px 20px 40px;
-  width: 100%;
-  max-width: 480px;
-  animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-
-.modal-baslik {
-  font-family: 'Syne', sans-serif;
-  font-size: 20px; font-weight: 800;
-  margin-bottom: 20px;
-}
-
+.modal { background: var(--s1); border: 1px solid var(--border2); border-radius: 24px 24px 0 0; padding: 24px 20px 40px; width: 100%; max-width: 480px; animation: slideUp 0.3s ease; }
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.modal-baslik { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; margin-bottom: 20px; }
 .form-grup { margin-bottom: 14px; }
-
-.form-etiket {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 7px;
-  display: block;
-}
-
-.form-input {
-  width: 100%;
-  background: var(--s2);
-  border: 1px solid var(--border2);
-  border-radius: 10px;
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  padding: 12px 14px;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
+.form-etiket { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; display: block; }
+.form-input { width: 100%; background: var(--s2); border: 1px solid var(--border2); border-radius: 10px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 12px 14px; outline: none; transition: border-color 0.2s; }
 .form-input:focus { border-color: var(--purple); }
 .form-input::placeholder { color: var(--muted); }
-
-.emoji-secici {
-  display: flex; gap: 8px; flex-wrap: wrap;
-}
-
-.emoji-btn {
-  width: 40px; height: 40px;
-  border-radius: 10px;
-  background: var(--s2);
-  border: 1px solid var(--border2);
-  font-size: 20px;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s;
-}
-
-.emoji-btn.secili {
-  border-color: var(--purple);
-  background: rgba(124,111,250,0.15);
-}
-
-.pazar-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 7px;
-}
-
-.pazar-btn {
-  padding: 8px 6px;
-  border-radius: 9px;
-  border: 1px solid var(--border2);
-  background: var(--s2);
-  color: var(--muted);
-  font-size: 11px;
-  font-family: 'DM Sans', sans-serif;
-  cursor: pointer;
-  text-align: center;
-  transition: all 0.2s;
-}
-
-.pazar-btn.secili {
-  border-color: var(--purple);
-  color: var(--purple2);
-  background: rgba(124,111,250,0.15);
-}
-
-.modal-btn {
-  width: 100%;
-  padding: 15px;
-  background: var(--purple);
-  border: none;
-  border-radius: 12px;
-  color: #fff;
-  font-family: 'Syne', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: opacity 0.2s;
-}
-
+.emoji-secici { display: flex; gap: 8px; flex-wrap: wrap; }
+.emoji-btn { width: 40px; height: 40px; border-radius: 10px; background: var(--s2); border: 1px solid var(--border2); font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.emoji-btn.secili { border-color: var(--purple); background: rgba(124,111,250,0.15); }
+.pazar-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
+.pazar-btn { padding: 8px 6px; border-radius: 9px; border: 1px solid var(--border2); background: var(--s2); color: var(--muted); font-size: 11px; font-family: 'DM Sans', sans-serif; cursor: pointer; text-align: center; transition: all 0.2s; }
+.pazar-btn.secili { border-color: var(--purple); color: var(--purple2); background: rgba(124,111,250,0.15); }
+.modal-btn { width: 100%; padding: 15px; background: var(--purple); border: none; border-radius: 12px; color: #fff; font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 20px; transition: opacity 0.2s; }
 .modal-btn:hover { opacity: 0.9; }
+.modal-iptal { width: 100%; padding: 12px; background: transparent; border: none; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 14px; cursor: pointer; margin-top: 8px; }
 
-.modal-iptal {
-  width: 100%;
-  padding: 12px;
-  background: transparent;
-  border: none;
-  color: var(--muted);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  cursor: pointer;
-  margin-top: 8px;
-}
+/* PANEL */
+#panel { background: var(--bg); }
+.panel-header { padding: 20px 20px 0; display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.geri-btn { width: 34px; height: 34px; border-radius: 10px; background: var(--s2); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; font-size: 14px; cursor: pointer; flex-shrink: 0; }
+.panel-urun-adi { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 800; }
+.panel-urun-kat { font-size: 10px; color: var(--muted); }
+.canli-badge { margin-left: auto; display: flex; align-items: center; gap: 5px; font-family: 'DM Mono', monospace; font-size: 9px; color: var(--green); background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.2); padding: 4px 10px; border-radius: 20px; }
+.canli-nokta { width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* NAV TABS */
+.nav-tabs { display: flex; padding: 0 20px; margin-bottom: 14px; border-bottom: 1px solid var(--border); overflow-x: auto; }
+.ntab { padding: 8px 14px; font-size: 12px; font-weight: 600; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.2s; }
+.ntab.active { color: var(--purple2); border-bottom-color: var(--purple); }
+
+/* PANEL İÇERİK */
+.panel-icerik { flex: 1; overflow-y: auto; padding: 0 20px 100px; }
+.platform-serit { display: flex; gap: 7px; margin-bottom: 14px; overflow-x: auto; padding-bottom: 2px; }
+.pchip { display: flex; align-items: center; gap: 5px; padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border2); background: var(--s1); font-size: 11px; font-weight: 600; color: var(--muted); cursor: pointer; white-space: nowrap; transition: all 0.2s; }
+.pchip.active { background: rgba(124,111,250,0.15); border-color: var(--purple); color: var(--purple2); }
+.kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.kpi { background: var(--s1); border: 1px solid var(--border); border-radius: 14px; padding: 13px; }
+.kpi-etiket { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+.kpi-deger { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; line-height: 1; margin-bottom: 3px; }
+.kpi-degisim { font-size: 10px; font-family: 'DM Mono', monospace; }
+.yukari { color: var(--green); }
+.asagi { color: var(--red); }
+.orta { color: var(--amber); }
+.sec-etiket { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--purple); margin: 18px 0 9px; }
+
+/* UYARI KARTLARI */
+.uyari-karti { border-radius: 12px; padding: 11px 13px; margin-bottom: 7px; display: flex; gap: 10px; align-items: flex-start; font-size: 12px; line-height: 1.5; }
+.uyari-karti.iyi { background: rgba(52,211,153,0.07); border: 1px solid rgba(52,211,153,0.2); }
+.uyari-karti.kotu { background: rgba(248,113,113,0.07); border: 1px solid rgba(248,113,113,0.2); }
+.uyari-karti.bilgi { background: rgba(124,111,250,0.07); border: 1px solid rgba(124,111,250,0.2); }
+.uyari-ikon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.uyari-metin strong { display: block; margin-bottom: 2px; font-size: 13px; }
+
+/* DROP-OFF */
+.dropoff { background: var(--s1); border: 1px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 10px; }
+.dropoff-baslik { font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+.drow { display: flex; align-items: center; gap: 7px; margin-bottom: 7px; }
+.detiket { font-size: 10px; color: var(--muted); width: 90px; flex-shrink: 0; font-family: 'DM Mono', monospace; }
+.dtrack { flex: 1; height: 20px; background: var(--s3); border-radius: 5px; overflow: hidden; }
+.dfill { height: 100%; border-radius: 5px; display: flex; align-items: center; padding-left: 8px; font-family: 'DM Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.8); transition: width 1s ease; }
+.dnum { font-family: 'DM Mono', monospace; font-size: 10px; width: 48px; text-align: right; }
+
+/* VİDEO KARTLARI */
+.vid-karti { background: var(--s1); border: 1px solid var(--border); border-radius: 14px; padding: 13px; margin-bottom: 9px; }
+.vid-ust { display: flex; gap: 10px; margin-bottom: 11px; }
+.vid-kucuk { width: 48px; height: 48px; border-radius: 9px; background: var(--s3); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.vid-adi { font-size: 12px; font-weight: 600; line-height: 1.3; margin-bottom: 5px; }
+.vid-etiketler { display: flex; gap: 4px; flex-wrap: wrap; }
+.vetiket { font-size: 9px; padding: 2px 7px; border-radius: 4px; font-family: 'DM Mono', monospace; }
+.ve-mor { background: rgba(124,111,250,0.15); color: var(--purple2); }
+.ve-yesil { background: rgba(52,211,153,0.15); color: var(--green); }
+.ve-kirmizi { background: rgba(248,113,113,0.15); color: var(--red); }
+.ve-sari { background: rgba(251,191,36,0.15); color: var(--amber); }
+.metrik-satir { display: flex; align-items: center; gap: 7px; margin-bottom: 6px; }
+.metrik-etiket { font-size: 10px; color: var(--muted); width: 88px; flex-shrink: 0; font-family: 'DM Mono', monospace; }
+.metrik-track { flex: 1; height: 5px; background: var(--s3); border-radius: 3px; overflow: hidden; }
+.metrik-dolgu { height: 100%; border-radius: 3px; }
+.md-yesil { background: var(--green); }
+.md-sari { background: var(--amber); }
+.md-kirmizi { background: var(--red); }
+.md-mor { background: var(--purple); }
+.metrik-deger { font-family: 'DM Mono', monospace; font-size: 10px; width: 32px; text-align: right; flex-shrink: 0; }
+
+/* YORUM ANALİZİ */
+.yorum-karti { background: var(--s2); border-radius: 10px; padding: 10px 12px; margin-bottom: 7px; }
+.yorum-konu { font-size: 12px; font-weight: 500; margin-bottom: 6px; }
+.yorum-bar-satir { display: flex; align-items: center; gap: 7px; }
+.yorum-track { flex: 1; height: 6px; background: var(--s3); border-radius: 3px; overflow: hidden; }
+.yorum-dolgu { height: 100%; border-radius: 3px; }
+.yorum-sayi { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); width: 52px; text-align: right; }
+
+/* ÖĞRENEN SİSTEM */
+.ogren-karti { border-radius: 14px; padding: 13px; margin-bottom: 9px; border: 1px solid rgba(124,111,250,0.2); background: linear-gradient(135deg, rgba(124,111,250,0.06), rgba(34,211,238,0.03)); }
+.ogren-karti.kotu { border-color: rgba(248,113,113,0.2); background: linear-gradient(135deg, rgba(248,113,113,0.05), rgba(251,191,36,0.03)); }
+.ogren-ust { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; }
+.ogren-rozet { font-family: 'DM Mono', monospace; font-size: 9px; padding: 3px 8px; border-radius: 4px; letter-spacing: 1px; }
+.or-yesil { background: rgba(52,211,153,0.15); color: var(--green); }
+.or-kirmizi { background: rgba(248,113,113,0.15); color: var(--red); }
+.ogren-baslik { font-size: 13px; font-weight: 600; }
+.kombo-wrap { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 9px; }
+.kombo-etiket { font-size: 10px; padding: 3px 8px; border-radius: 5px; background: var(--s2); border: 1px solid var(--border2); }
+.ogren-metrikler { font-size: 11px; color: var(--muted); margin-bottom: 7px; }
+.detay-link { font-size: 11px; color: var(--purple2); cursor: pointer; font-family: 'DM Mono', monospace; }
+
+/* VİDEO ANALİZ EKRANI */
+#video-analiz { background: var(--bg); }
+.va-header { padding: 20px 20px 16px; display: flex; align-items: center; gap: 10px; }
+.va-baslik { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; }
+.va-icerik { flex: 1; overflow-y: auto; padding: 0 20px 100px; }
+.va-bolum { background: var(--s1); border: 1px solid var(--border2); border-radius: 14px; margin-bottom: 12px; overflow: hidden; }
+.va-bolum-baslik { display: flex; align-items: center; gap: 10px; padding: 13px 14px; cursor: pointer; }
+.va-no { font-family: 'DM Mono', monospace; font-size: 10px; padding: 3px 8px; border-radius: 4px; font-weight: 700; }
+.vno-1 { background: rgba(248,113,113,0.2); color: var(--red); }
+.vno-2 { background: rgba(124,111,250,0.2); color: var(--purple2); }
+.vno-3 { background: rgba(52,211,153,0.2); color: var(--green); }
+.vno-4 { background: rgba(251,191,36,0.2); color: var(--amber); }
+.va-bolum-label { font-size: 14px; font-weight: 600; flex: 1; }
+.va-format-goster { font-size: 11px; color: var(--muted); background: var(--s2); padding: 3px 8px; border-radius: 4px; }
+.va-bolum-icerik { padding: 0 14px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s; }
+.va-bolum-icerik.acik { max-height: 500px; padding: 0 14px 14px; }
+.format-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.format-chip { padding: 5px 11px; border-radius: 20px; border: 1px solid var(--border2); background: transparent; color: var(--muted); font-size: 11px; cursor: pointer; transition: all 0.2s; }
+.format-chip.secili { border-color: var(--purple); color: var(--purple2); background: rgba(124,111,250,0.1); }
+.va-textarea { width: 100%; background: var(--bg); border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 10px 12px; resize: vertical; min-height: 80px; outline: none; transition: border-color 0.2s; }
+.va-textarea:focus { border-color: var(--purple); }
+.va-textarea::placeholder { color: var(--muted); }
+.va-input { width: 100%; background: var(--bg); border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 10px 12px; outline: none; transition: border-color 0.2s; }
+.va-input:focus { border-color: var(--purple); }
+.va-input::placeholder { color: var(--muted); }
+.va-select { width: 100%; background: var(--bg); border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 10px 12px; outline: none; }
+.va-select option { background: var(--s1); }
+.platform-tabs-va { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.ptab-va { padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border2); background: transparent; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.ptab-va.active { background: var(--purple); border-color: var(--purple); color: #fff; }
+.tur-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.tur-btn { padding: 10px; border-radius: 10px; border: 1px solid var(--border2); background: var(--s2); color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 12px; cursor: pointer; text-align: center; transition: all 0.2s; }
+.tur-btn.active { border-color: var(--purple); color: var(--purple2); background: rgba(124,111,250,0.1); }
+.persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.persona-karti { padding: 12px; border-radius: 10px; border: 1px solid var(--border2); background: var(--s2); cursor: pointer; transition: all 0.2s; }
+.persona-karti.active { border-color: var(--purple); background: rgba(124,111,250,0.1); }
+.persona-adi { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.persona-aciklama { font-size: 11px; color: var(--muted); line-height: 1.4; }
+.analiz-btn { width: 100%; padding: 16px; background: linear-gradient(135deg, var(--purple), #9b59b6); border: none; border-radius: 12px; color: #fff; font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 8px; transition: opacity 0.2s; }
+.analiz-btn:hover { opacity: 0.9; }
+.analiz-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.yukleniyor { display: none; text-align: center; padding: 32px; }
+.yukleniyor.goster { display: block; }
+.spinner { width: 40px; height: 40px; border: 3px solid var(--border2); border-top-color: var(--purple); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.sonuclar { display: none; }
+.sonuclar.goster { display: block; }
+.skor-daire { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 700; flex-shrink: 0; }
+.sd-iyi { background: rgba(52,211,153,0.15); color: var(--green); border: 2px solid var(--green); }
+.sd-orta { background: rgba(251,191,36,0.15); color: var(--amber); border: 2px solid var(--amber); }
+.sd-kotu { background: rgba(248,113,113,0.15); color: var(--red); border: 2px solid var(--red); }
+.sonuc-bolum { background: var(--s2); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 10px; }
+.karar { margin-left: auto; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+.karar-iyi { background: rgba(52,211,153,0.2); color: var(--green); }
+.karar-orta { background: rgba(251,191,36,0.2); color: var(--amber); }
+.karar-kotu { background: rgba(248,113,113,0.2); color: var(--red); }
+.sonuc-metin { font-size: 12px; line-height: 1.6; color: #c8c8e0; white-space: pre-wrap; }
+.hook-kutu { background: linear-gradient(135deg, rgba(248,113,113,0.1), rgba(124,111,250,0.1)); border: 1px solid rgba(248,113,113,0.3); border-radius: 12px; padding: 14px; margin-bottom: 10px; }
+.hook-kutu-baslik { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; color: var(--red); text-transform: uppercase; margin-bottom: 8px; }
+.sonraki-adimlar { background: linear-gradient(135deg, rgba(52,211,153,0.05), rgba(124,111,250,0.05)); border: 1px solid rgba(52,211,153,0.2); border-radius: 12px; padding: 14px; margin-bottom: 10px; }
+.sa-baslik { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; color: var(--green); text-transform: uppercase; margin-bottom: 12px; }
+.adim { display: flex; gap: 10px; margin-bottom: 8px; font-size: 12px; line-height: 1.5; }
+.adim-no { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--purple); flex-shrink: 0; margin-top: 1px; }
+.sifirla-btn { width: 100%; padding: 12px; background: transparent; border: 1px solid var(--border2); border-radius: 10px; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; margin-top: 8px; transition: all 0.2s; }
+.sifirla-btn:hover { border-color: var(--text); color: var(--text); }
+.va-label { display: block; font-size: 11px; color: var(--muted); margin-bottom: 6px; margin-top: 10px; }
+
+/* ALT NAV */
+.alt-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--s1); border-top: 1px solid var(--border); display: flex; padding: 10px 0 22px; z-index: 100; }
+.alt-nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 9px; color: var(--muted); cursor: pointer; font-family: 'DM Mono', monospace; letter-spacing: 0.5px; transition: color 0.2s; }
+.alt-nav-item.active { color: var(--purple2); }
+.alt-nav-ikon { font-size: 18px; }
+
+/* RAKIP ANALİZ */
+#rakip { background: var(--bg); }
+.rakip-icerik { flex: 1; overflow-y: auto; padding: 0 20px 100px; }
+.rakip-form { background: var(--s1); border: 1px solid var(--border2); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
+.rakip-form-baslik { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 14px; }
+.rakip-btn { width: 100%; padding: 14px; background: var(--purple); border: none; border-radius: 12px; color: #fff; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 12px; }
+
+/* ARASTIR */
+#arastir { background: var(--bg); }
+.arastir-icerik { flex: 1; overflow-y: auto; padding: 0 20px 100px; }
+.arastir-form { background: var(--s1); border: 1px solid var(--border2); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
+.arastir-btn { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--purple), var(--cyan)); border: none; border-radius: 12px; color: #fff; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 12px; }
 </style>
 </head>
 <body>
@@ -387,8 +280,8 @@ body {
   <div class="splash-inner">
     <div class="splash-logo">DropIQ</div>
     <div class="splash-tag">Akıllı Dropshipping Sistemi</div>
-    <div class="splash-desc">Ürün araştırma, video analiz,<br>rakip takibi ve öğrenen sistem</div>
-    <button class="splash-btn" onclick="ekranaGit('urunler')">Başla →</button>
+    <div class="splash-desc">Ürün araştırma · Video analiz<br>Rakip takibi · Öğrenen sistem</div>
+    <button class="splash-btn" onclick="git('urunler')">Başla →</button>
   </div>
 </div>
 
@@ -398,75 +291,40 @@ body {
     <div class="top-logo">DropIQ</div>
     <div class="top-icon">⚙️</div>
   </div>
-
   <div class="urunler-header">
     <div class="urunler-title">Ürünlerin</div>
     <div class="urunler-sub">Analiz etmek istediğin ürünü seç</div>
   </div>
-
   <div class="urunler-grid" id="urunlerGrid">
-
-    <div class="urun-karti uk-1" onclick="ekranaGit('panel')">
+    <div class="urun-karti uk-1" onclick="urunSec('👶','Momera','Bebek Taşıyıcı','🇺🇸 ABD')">
       <div class="urun-emoji">👶</div>
       <div class="urun-adi">Momera</div>
       <div class="urun-kat">Bebek Taşıyıcı · 🇺🇸 ABD</div>
-      <div class="urun-stat">
-        <span class="stat-etiket"><span class="durum-nokta" style="background:var(--green)"></span>Aktif</span>
-        <span class="stat-deger" style="color:var(--green)">48.2K</span>
-      </div>
-      <div class="urun-stat">
-        <span class="stat-etiket">Hook Oranı</span>
-        <span class="stat-deger" style="color:var(--purple2)">%64</span>
-      </div>
-      <div class="urun-stat">
-        <span class="stat-etiket">ROAS</span>
-        <span class="stat-deger" style="color:var(--amber)">2.1x</span>
-      </div>
+      <div class="urun-stat"><span class="stat-etiket"><span class="durum-nokta" style="background:var(--green)"></span>Aktif</span><span class="stat-deger" style="color:var(--green)">48.2K</span></div>
+      <div class="urun-stat"><span class="stat-etiket">Hook Oranı</span><span class="stat-deger" style="color:var(--purple2)">%64</span></div>
+      <div class="urun-stat"><span class="stat-etiket">ROAS</span><span class="stat-deger" style="color:var(--amber)">2.1x</span></div>
     </div>
-
-    <div class="urun-karti uk-2" onclick="ekranaGit('panel')">
+    <div class="urun-karti uk-2" onclick="urunSec('💆','Vibit','Masaj Aleti','🇺🇸 ABD')">
       <div class="urun-emoji">💆</div>
       <div class="urun-adi">Vibit</div>
       <div class="urun-kat">Masaj Aleti · 🇺🇸 ABD</div>
-      <div class="urun-stat">
-        <span class="stat-etiket"><span class="durum-nokta" style="background:var(--amber)"></span>Test</span>
-        <span class="stat-deger" style="color:var(--amber)">12.4K</span>
-      </div>
-      <div class="urun-stat">
-        <span class="stat-etiket">Hook Oranı</span>
-        <span class="stat-deger" style="color:var(--green)">%71</span>
-      </div>
-      <div class="urun-stat">
-        <span class="stat-etiket">ROAS</span>
-        <span class="stat-deger" style="color:var(--green)">3.4x</span>
-      </div>
+      <div class="urun-stat"><span class="stat-etiket"><span class="durum-nokta" style="background:var(--amber)"></span>Test</span><span class="stat-deger" style="color:var(--amber)">12.4K</span></div>
+      <div class="urun-stat"><span class="stat-etiket">Hook Oranı</span><span class="stat-deger" style="color:var(--green)">%71</span></div>
+      <div class="urun-stat"><span class="stat-etiket">ROAS</span><span class="stat-deger" style="color:var(--green)">3.4x</span></div>
     </div>
-
-    <div class="urun-karti uk-3" onclick="ekranaGit('panel')">
+    <div class="urun-karti uk-3" onclick="urunSec('⚡','Noxa','Masaj Kemeri','🇺🇸 ABD')">
       <div class="urun-emoji">⚡</div>
       <div class="urun-adi">Noxa</div>
       <div class="urun-kat">Masaj Kemeri · 🇺🇸 ABD</div>
-      <div class="urun-stat">
-        <span class="stat-etiket"><span class="durum-nokta" style="background:var(--red)"></span>Düşük</span>
-        <span class="stat-deger" style="color:var(--red)">3.1K</span>
-      </div>
-      <div class="urun-stat">
-        <span class="stat-etiket">Hook Oranı</span>
-        <span class="stat-deger" style="color:var(--red)">%31</span>
-      </div>
-      <div class="urun-stat">
-        <span class="stat-etiket">ROAS</span>
-        <span class="stat-deger" style="color:var(--red)">0.8x</span>
-      </div>
+      <div class="urun-stat"><span class="stat-etiket"><span class="durum-nokta" style="background:var(--red)"></span>Düşük</span><span class="stat-deger" style="color:var(--red)">3.1K</span></div>
+      <div class="urun-stat"><span class="stat-etiket">Hook Oranı</span><span class="stat-deger" style="color:var(--red)">%31</span></div>
+      <div class="urun-stat"><span class="stat-etiket">ROAS</span><span class="stat-deger" style="color:var(--red)">0.8x</span></div>
     </div>
-
     <div class="urun-karti ekle" onclick="modalAc()">
       <div class="ekle-ikon">+</div>
       <div class="ekle-yazi">Yeni Ürün Ekle</div>
     </div>
-
   </div>
-
   <div class="sistem-karti">
     <div class="sistem-ikon">🧠</div>
     <div>
@@ -480,31 +338,27 @@ body {
 <div class="modal-overlay" id="modalOverlay" onclick="modalKapat(event)">
   <div class="modal">
     <div class="modal-baslik">Yeni Ürün Ekle</div>
-
     <div class="form-grup">
       <label class="form-etiket">Ürün Adı</label>
-      <input class="form-input" id="yeniUrunAdi" placeholder="Örn: SkinGlow, FlexBand..." type="text">
+      <input class="form-input" id="yeniAd" placeholder="Örn: SkinGlow, FlexBand..." type="text">
     </div>
-
     <div class="form-grup">
       <label class="form-etiket">Kategori</label>
-      <input class="form-input" id="yeniUrunKat" placeholder="Örn: Cilt bakım, Spor, Bebek..." type="text">
+      <input class="form-input" id="yeniKat" placeholder="Örn: Cilt bakım, Spor..." type="text">
     </div>
-
     <div class="form-grup">
       <label class="form-etiket">Simge Seç</label>
-      <div class="emoji-secici" id="emojiSecici">
-        <button class="emoji-btn secili" onclick="emojiSec(this, '🛍️')">🛍️</button>
-        <button class="emoji-btn" onclick="emojiSec(this, '💄')">💄</button>
-        <button class="emoji-btn" onclick="emojiSec(this, '💪')">💪</button>
-        <button class="emoji-btn" onclick="emojiSec(this, '🧴')">🧴</button>
-        <button class="emoji-btn" onclick="emojiSec(this, '👶')">👶</button>
-        <button class="emoji-btn" onclick="emojiSec(this, '🏃')">🏃</button>
-        <button class="emoji-btn" onclick="emojiSec(this, '✨')">✨</button>
-        <button class="emoji-btn" onclick="emojiSec(this, '⚡')">⚡</button>
+      <div class="emoji-secici">
+        <button class="emoji-btn secili" onclick="emojiSec(this,'🛍️')">🛍️</button>
+        <button class="emoji-btn" onclick="emojiSec(this,'💄')">💄</button>
+        <button class="emoji-btn" onclick="emojiSec(this,'💪')">💪</button>
+        <button class="emoji-btn" onclick="emojiSec(this,'🧴')">🧴</button>
+        <button class="emoji-btn" onclick="emojiSec(this,'👶')">👶</button>
+        <button class="emoji-btn" onclick="emojiSec(this,'🏃')">🏃</button>
+        <button class="emoji-btn" onclick="emojiSec(this,'✨')">✨</button>
+        <button class="emoji-btn" onclick="emojiSec(this,'⚡')">⚡</button>
       </div>
     </div>
-
     <div class="form-grup">
       <label class="form-etiket">Hedef Pazar</label>
       <div class="pazar-grid">
@@ -516,35 +370,396 @@ body {
         <button class="pazar-btn" onclick="pazarSec(this)">🇦🇺 Avustralya</button>
       </div>
     </div>
-
     <button class="modal-btn" onclick="urunEkle()">Ürün Oluştur →</button>
     <button class="modal-iptal" onclick="modalKapat()">İptal</button>
   </div>
 </div>
 
-<!-- PANEL (geçici placeholder) -->
+<!-- PANEL -->
 <div class="screen" id="panel">
-  <div style="padding:20px;">
-    <button onclick="ekranaGit('urunler')" style="background:var(--s2);border:1px solid var(--border2);color:var(--text);padding:10px 16px;border-radius:10px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:20px;">← Geri</button>
-    <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:8px;">Panel yakında açılıyor...</div>
-    <div style="color:var(--muted);font-size:14px;">Bir sonraki adımda tam panel gelecek.</div>
+  <div class="panel-header">
+    <div class="geri-btn" onclick="git('urunler')">←</div>
+    <div>
+      <div class="panel-urun-adi" id="panelUrunAdi">👶 Momera</div>
+      <div class="panel-urun-kat" id="panelUrunKat">Bebek Taşıyıcı · 🇺🇸 ABD</div>
+    </div>
+    <div class="canli-badge"><div class="canli-nokta"></div>CANLI</div>
+  </div>
+  <div class="nav-tabs">
+    <div class="ntab active" onclick="tabSec(this,'panel-tab-panel')">Panel</div>
+    <div class="ntab" onclick="tabSec(this,'panel-tab-videolar')">Videolar</div>
+    <div class="ntab" onclick="tabSec(this,'panel-tab-yorumlar')">Yorumlar</div>
+    <div class="ntab" onclick="tabSec(this,'panel-tab-sistem')">Sistem</div>
+  </div>
+  <div class="panel-icerik">
+
+    <!-- PANEL TAB -->
+    <div id="panel-tab-panel">
+      <div class="platform-serit">
+        <div class="pchip active">🌐 Tümü</div>
+        <div class="pchip">🎵 TikTok</div>
+        <div class="pchip">📸 Instagram</div>
+        <div class="pchip">👥 Facebook</div>
+        <div class="pchip">▶️ YouTube</div>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kpi-etiket">Görüntülenme</div><div class="kpi-deger" style="color:var(--purple2)">48.2K</div><div class="kpi-degisim yukari">↑ %23 dün</div></div>
+        <div class="kpi"><div class="kpi-etiket">Hook Oranı</div><div class="kpi-deger" style="color:var(--green)">%64</div><div class="kpi-degisim yukari">↑ %8 dün</div></div>
+        <div class="kpi"><div class="kpi-etiket">Harcama</div><div class="kpi-deger" style="color:var(--amber)">₺840</div><div class="kpi-degisim asagi">ROAS 2.1x ↓</div></div>
+        <div class="kpi"><div class="kpi-etiket">Yeni Yorum</div><div class="kpi-deger" style="color:var(--text)">127</div><div class="kpi-degisim yukari">34 pozitif ↑</div></div>
+      </div>
+      <div class="sec-etiket">⚡ Bugünün Uyarıları</div>
+      <div class="uyari-karti iyi"><div class="uyari-ikon">🚀</div><div class="uyari-metin"><strong>TikTok Video #7 viral gidiyor</strong>12 saatte 18K görüntülenme. UGC + Tükenmiş Anne → %78 hook oranı.</div></div>
+      <div class="uyari-karti kotu"><div class="uyari-ikon">⚠️</div><div class="uyari-metin"><strong>Facebook Reklam #3 batıyor</strong>CTR %0.4, ₺320 harcandı. CTA zayıf — durdurmanı öneririm.</div></div>
+      <div class="uyari-karti bilgi"><div class="uyari-ikon">💡</div><div class="uyari-metin"><strong>En iyi paylaşım saati</strong>Instagram bugün 20:00–22:00. Organik için ideal.</div></div>
+      <div class="sec-etiket">📉 İzleyici Kaybı — 1M Gösterim</div>
+      <div class="dropoff">
+        <div class="dropoff-baslik">Video #7 — "Bebeğim sürekli kucakta istiyor"</div>
+        <div class="drow"><div class="detiket">Gösterim</div><div class="dtrack"><div class="dfill" style="width:100%;background:var(--purple)">1.000.000</div></div><div class="dnum">1M</div></div>
+        <div class="drow"><div class="detiket">Duraksadı</div><div class="dtrack"><div class="dfill" style="width:78%;background:var(--purple2)">780K</div></div><div class="dnum" style="color:var(--purple2)">780K</div></div>
+        <div class="drow"><div class="detiket">3sn geçti</div><div class="dtrack"><div class="dfill" style="width:64%;background:var(--green)">640K</div></div><div class="dnum" style="color:var(--green)">640K</div></div>
+        <div class="drow"><div class="detiket">Yarısı</div><div class="dtrack"><div class="dfill" style="width:42%;background:var(--amber)">420K</div></div><div class="dnum" style="color:var(--amber)">420K</div></div>
+        <div class="drow"><div class="detiket">Sonuna kadar</div><div class="dtrack"><div class="dfill" style="width:28%;background:var(--amber)">280K</div></div><div class="dnum" style="color:var(--amber)">280K</div></div>
+        <div class="drow"><div class="detiket">Tıkladı</div><div class="dtrack"><div class="dfill" style="width:8%;background:var(--red)">80K</div></div><div class="dnum" style="color:var(--red)">80K</div></div>
+      </div>
+    </div>
+
+    <!-- VİDEOLAR TAB -->
+    <div id="panel-tab-videolar" style="display:none">
+      <div class="sec-etiket">🎬 Video Performansı</div>
+      <div class="vid-karti">
+        <div class="vid-ust"><div class="vid-kucuk">🎥</div><div><div class="vid-adi">"Bebeğim sürekli kucakta" — TikTok Organik</div><div class="vid-etiketler"><span class="vetiket ve-mor">UGC</span><span class="vetiket ve-mor">Tükenmiş Anne</span><span class="vetiket ve-yesil">ÇALIŞIYOR ✅</span></div></div></div>
+        <div class="metrik-satir"><div class="metrik-etiket">Hook Oranı</div><div class="metrik-track"><div class="metrik-dolgu md-yesil" style="width:78%"></div></div><div class="metrik-deger yukari">%78</div></div>
+        <div class="metrik-satir"><div class="metrik-etiket">İzlenme Süresi</div><div class="metrik-track"><div class="metrik-dolgu md-yesil" style="width:65%"></div></div><div class="metrik-deger yukari">18sn</div></div>
+        <div class="metrik-satir"><div class="metrik-etiket">Tamamlanma</div><div class="metrik-track"><div class="metrik-dolgu md-sari" style="width:42%"></div></div><div class="metrik-deger orta">%42</div></div>
+        <div class="metrik-satir"><div class="metrik-etiket">Paylaşım</div><div class="metrik-track"><div class="metrik-dolgu md-mor" style="width:55%"></div></div><div class="metrik-deger">284</div></div>
+      </div>
+      <div class="vid-karti">
+        <div class="vid-ust"><div class="vid-kucuk">🎥</div><div><div class="vid-adi">"Eller serbest, bebek mutlu" — FB Reklam</div><div class="vid-etiketler"><span class="vetiket ve-mor">Problem/Çözüm</span><span class="vetiket ve-kirmizi">ZAYIF ❌</span></div></div></div>
+        <div class="metrik-satir"><div class="metrik-etiket">Hook Oranı</div><div class="metrik-track"><div class="metrik-dolgu md-kirmizi" style="width:31%"></div></div><div class="metrik-deger asagi">%31</div></div>
+        <div class="metrik-satir"><div class="metrik-etiket">İzlenme Süresi</div><div class="metrik-track"><div class="metrik-dolgu md-kirmizi" style="width:25%"></div></div><div class="metrik-deger asagi">6sn</div></div>
+        <div class="metrik-satir"><div class="metrik-etiket">CTR</div><div class="metrik-track"><div class="metrik-dolgu md-kirmizi" style="width:13%"></div></div><div class="metrik-deger asagi">%0.4</div></div>
+        <div class="metrik-satir"><div class="metrik-etiket">Harcama</div><div class="metrik-track"><div class="metrik-dolgu md-sari" style="width:60%"></div></div><div class="metrik-deger orta">₺320</div></div>
+      </div>
+    </div>
+
+    <!-- YORUMLAR TAB -->
+    <div id="panel-tab-yorumlar" style="display:none">
+      <div class="sec-etiket">💬 Yorum Analizi — Bu Hafta</div>
+      <div class="yorum-karti"><div class="yorum-konu">😓 Yorgunluk / Eller bağlı kalma</div><div class="yorum-bar-satir"><div class="yorum-track"><div class="yorum-dolgu md-kirmizi" style="width:82%"></div></div><div class="yorum-sayi">82 yorum</div></div></div>
+      <div class="yorum-karti"><div class="yorum-konu">🤔 "Gerçekten işe yarıyor mu?"</div><div class="yorum-bar-satir"><div class="yorum-track"><div class="yorum-dolgu md-sari" style="width:64%"></div></div><div class="yorum-sayi">64 yorum</div></div></div>
+      <div class="yorum-karti"><div class="yorum-konu">❤️ "Keşke daha önce bilseydim"</div><div class="yorum-bar-satir"><div class="yorum-track"><div class="yorum-dolgu md-yesil" style="width:51%"></div></div><div class="yorum-sayi">51 yorum</div></div></div>
+      <div class="yorum-karti"><div class="yorum-konu">💰 Fiyat / değer sorusu</div><div class="yorum-bar-satir"><div class="yorum-track"><div class="yorum-dolgu md-mor" style="width:38%"></div></div><div class="yorum-sayi">38 yorum</div></div></div>
+      <div class="yorum-karti"><div class="yorum-konu">😍 "Bebeğim çok daha sakin"</div><div class="yorum-bar-satir"><div class="yorum-track"><div class="yorum-dolgu md-yesil" style="width:29%"></div></div><div class="yorum-sayi">29 yorum</div></div></div>
+    </div>
+
+    <!-- SİSTEM TAB -->
+    <div id="panel-tab-sistem" style="display:none">
+      <div class="sec-etiket">🧠 Öğrenen Sistem</div>
+      <div class="ogren-karti">
+        <div class="ogren-ust"><div class="ogren-rozet or-yesil">ÇALIŞIYOR ✅</div><div class="ogren-baslik">Kombinasyon #7</div></div>
+        <div class="kombo-wrap"><div class="kombo-etiket">👤 Tükenmiş Anne</div><div class="kombo-etiket">😓 Eller bağlı acısı</div><div class="kombo-etiket">🎬 UGC</div><div class="kombo-etiket">😤 Yorgunluk</div><div class="kombo-etiket">📱 TikTok</div></div>
+        <div class="ogren-metrikler">Hook Oranı ort. <strong style="color:var(--green)">%72</strong> · İzlenme <strong style="color:var(--green)">17sn</strong> · 3 videoda test edildi</div>
+        <div class="detay-link">→ Neden çalıştığını gör</div>
+      </div>
+      <div class="ogren-karti kotu">
+        <div class="ogren-ust"><div class="ogren-rozet or-kirmizi">KULLANMA ❌</div><div class="ogren-baslik">Kombinasyon #4</div></div>
+        <div class="kombo-wrap"><div class="kombo-etiket">👤 Habersiz Kitle</div><div class="kombo-etiket">🛍️ Ürün odaklı hook</div><div class="kombo-etiket">🎬 Demo</div><div class="kombo-etiket">👥 Facebook</div></div>
+        <div class="ogren-metrikler">Hook Oranı ort. <strong style="color:var(--red)">%28</strong> · 2 videoda test edildi</div>
+        <div class="detay-link" style="color:var(--red)">→ Neden çalışmadığını gör</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="alt-nav">
+    <div class="alt-nav-item active" onclick="panelNavSec(this,'panel')"><div class="alt-nav-ikon">📊</div>Panel</div>
+    <div class="alt-nav-item" onclick="git('video-analiz')"><div class="alt-nav-ikon">🎬</div>Video Analiz</div>
+    <div class="alt-nav-item" onclick="git('arastir')"><div class="alt-nav-ikon">🔍</div>Araştır</div>
+    <div class="alt-nav-item" onclick="git('rakip')"><div class="alt-nav-ikon">🥊</div>Rakip</div>
+    <div class="alt-nav-item" onclick="git('urunler')"><div class="alt-nav-ikon">🏠</div>Ana</div>
+  </div>
+</div>
+
+<!-- VİDEO ANALİZ -->
+<div class="screen" id="video-analiz">
+  <div class="va-header">
+    <div class="geri-btn" onclick="git('panel')">←</div>
+    <div class="va-baslik">🎬 Video Analiz</div>
+  </div>
+  <div class="va-icerik">
+
+    <!-- Platform -->
+    <div class="sec-etiket">Platform</div>
+    <div class="platform-tabs-va">
+      <button class="ptab-va active" onclick="platformSec(this)">TikTok</button>
+      <button class="ptab-va" onclick="platformSec(this)">Instagram</button>
+      <button class="ptab-va" onclick="platformSec(this)">Facebook</button>
+      <button class="ptab-va" onclick="platformSec(this)">YouTube</button>
+    </div>
+
+    <!-- İçerik türü -->
+    <div class="sec-etiket">İçerik Türü</div>
+    <div class="tur-grid">
+      <button class="tur-btn active" onclick="turSec(this)">📢 Reklam</button>
+      <button class="tur-btn" onclick="turSec(this)">🌱 Organik</button>
+    </div>
+
+    <!-- Video türü -->
+    <div class="sec-etiket">Video Türü (22 tür)</div>
+    <select class="va-select" id="videoTur">
+      <option>UGC — Kullanıcı İçeriği</option>
+      <option>Şüpheci Figür</option>
+      <option>Unboxing — Kutu Açma</option>
+      <option>Before/After — Önce/Sonra</option>
+      <option>3 Sebep</option>
+      <option>Testimonial — Müşteri Yorumu</option>
+      <option>Day in the Life — Günlük Rutin</option>
+      <option>Lifestyle Integration</option>
+      <option>Aesthetic/Moodboard</option>
+      <option>Behind the Scenes</option>
+      <option>Problem → Çözüm</option>
+      <option>Storytelling — Hikaye</option>
+      <option>Dönüşüm Anı</option>
+      <option>Demo — Ürün Gösterimi</option>
+      <option>Life Hack</option>
+      <option>Karşılaştırma</option>
+      <option>Review — İnceleme</option>
+      <option>Sosyal Kanıt / Yorumlar</option>
+      <option>İstatistik/Veri Hook</option>
+      <option>Influencer Spark</option>
+      <option>Trend/Ses</option>
+      <option>Komedi/Skit</option>
+    </select>
+
+    <!-- Persona -->
+    <div class="sec-etiket">Hedef Kitle Personası</div>
+    <div class="persona-grid">
+      <div class="persona-karti active" onclick="personaSec(this,'Tamamen Habersiz — Sorunun farkında değil, ilk kez karşılaşıyor.')"><div class="persona-adi">😴 Habersiz</div><div class="persona-aciklama">Sorunu bilmiyor</div></div>
+      <div class="persona-karti" onclick="personaSec(this,'Acı Farkında — Sorunu hissediyor ama çözüm aramıyor.')"><div class="persona-adi">😟 Acı Farkında</div><div class="persona-aciklama">Sorunu biliyor</div></div>
+      <div class="persona-karti" onclick="personaSec(this,'Çözüm Arıyor — Çözüm arıyor ama ürünü tanımıyor.')"><div class="persona-adi">🔍 Çözüm Arıyor</div><div class="persona-aciklama">Alternatif arıyor</div></div>
+      <div class="persona-karti" onclick="personaSec(this,'Ürün Farkında — Ürünü biliyor ama ikna olmamış.')"><div class="persona-adi">🤔 Ürün Biliyor</div><div class="persona-aciklama">İkna olmamış</div></div>
+      <div class="persona-karti" onclick="personaSec(this,'Satın Almaya Hazır — İkna olmuş, sadece doğru teklifi bekliyor.')"><div class="persona-adi">✅ Hazır</div><div class="persona-aciklama">Teklif bekliyor</div></div>
+    </div>
+    <label class="va-label">Özel persona (isteğe bağlı)</label>
+    <input class="va-input" id="ozelPersona" placeholder="Örn: 0-6 aylık bebek sahibi, ilk kez anne...">
+
+    <!-- Ürün -->
+    <div class="sec-etiket">Ürün Bilgisi</div>
+    <label class="va-label">Ürün adı</label>
+    <input class="va-input" id="vaUrunAdi" placeholder="Örn: Momera Bebek Taşıyıcı">
+    <label class="va-label">Ana mesaj</label>
+    <input class="va-input" id="vaAnaMessaj" placeholder="Örn: Eller serbest, bebek mutlu, anne rahat">
+
+    <!-- Segmentler -->
+    <div class="sec-etiket">Video Segmentleri</div>
+
+    <!-- HOOK -->
+    <div class="va-bolum">
+      <div class="va-bolum-baslik" onclick="bolumAc('hook')">
+        <span class="va-no vno-1">01</span>
+        <span class="va-bolum-label">Hook — İlk 3 Saniye</span>
+        <span class="va-format-goster" id="hookFormatGoster">Format seç</span>
+      </div>
+      <div class="va-bolum-icerik" id="hook">
+        <div class="format-chips">
+          <button class="format-chip" onclick="formatSec('hook',this,'UGC')">UGC</button>
+          <button class="format-chip" onclick="formatSec('hook',this,'Şüpheci Figür')">Şüpheci Figür</button>
+          <button class="format-chip" onclick="formatSec('hook',this,'Metin Hook')">Metin Hook</button>
+          <button class="format-chip" onclick="formatSec('hook',this,'Problem Sahnesi')">Problem Sahnesi</button>
+          <button class="format-chip" onclick="formatSec('hook',this,'Kural Kırma')">Kural Kırma</button>
+          <button class="format-chip" onclick="formatSec('hook',this,'Ürün Gösterimi')">Ürün Gösterimi</button>
+        </div>
+        <textarea class="va-textarea" id="hookMetin" placeholder="Hook'ta ne oluyor? İlk 3 saniyeyi detaylı anlat."></textarea>
+      </div>
+    </div>
+
+    <!-- GİRİŞ -->
+    <div class="va-bolum">
+      <div class="va-bolum-baslik" onclick="bolumAc('giris')">
+        <span class="va-no vno-2">02</span>
+        <span class="va-bolum-label">Giriş — Bağlam Kurma</span>
+        <span class="va-format-goster" id="girisFormatGoster">Format seç</span>
+      </div>
+      <div class="va-bolum-icerik" id="giris">
+        <div class="format-chips">
+          <button class="format-chip" onclick="formatSec('giris',this,'Lifestyle')">Lifestyle</button>
+          <button class="format-chip" onclick="formatSec('giris',this,'Problem Derinleştirme')">Problem Derinleştirme</button>
+          <button class="format-chip" onclick="formatSec('giris',this,'Hikaye Anlatımı')">Hikaye Anlatımı</button>
+          <button class="format-chip" onclick="formatSec('giris',this,'Uzman/Otorite')">Uzman/Otorite</button>
+          <button class="format-chip" onclick="formatSec('giris',this,'İstatistik')">İstatistik</button>
+        </div>
+        <textarea class="va-textarea" id="girisMetin" placeholder="Giriş kısmında ne anlatılıyor?"></textarea>
+      </div>
+    </div>
+
+    <!-- GÖVDE -->
+    <div class="va-bolum">
+      <div class="va-bolum-baslik" onclick="bolumAc('govde')">
+        <span class="va-no vno-3">03</span>
+        <span class="va-bolum-label">Gövde — Değer Sunumu</span>
+        <span class="va-format-goster" id="govdeFormatGoster">Format seç</span>
+      </div>
+      <div class="va-bolum-icerik" id="govde">
+        <div class="format-chips">
+          <button class="format-chip" onclick="formatSec('govde',this,'Ürün Gösterimi')">Ürün Gösterimi</button>
+          <button class="format-chip" onclick="formatSec('govde',this,'Fayda Listesi')">Fayda Listesi</button>
+          <button class="format-chip" onclick="formatSec('govde',this,'Karşılaştırma')">Karşılaştırma</button>
+          <button class="format-chip" onclick="formatSec('govde',this,'Sosyal Kanıt')">Sosyal Kanıt</button>
+          <button class="format-chip" onclick="formatSec('govde',this,'Dönüşüm Anı')">Dönüşüm Anı</button>
+          <button class="format-chip" onclick="formatSec('govde',this,'Eğitici')">Eğitici</button>
+        </div>
+        <textarea class="va-textarea" id="govdeMetin" placeholder="Gövdede ne anlatılıyor?"></textarea>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="va-bolum">
+      <div class="va-bolum-baslik" onclick="bolumAc('cta')">
+        <span class="va-no vno-4">04</span>
+        <span class="va-bolum-label">CTA — Harekete Geçirme</span>
+        <span class="va-format-goster" id="ctaFormatGoster">Format seç</span>
+      </div>
+      <div class="va-bolum-icerik" id="cta">
+        <div class="format-chips">
+          <button class="format-chip" onclick="formatSec('cta',this,'Aciliyet')">Aciliyet</button>
+          <button class="format-chip" onclick="formatSec('cta',this,'Yumuşak CTA')">Yumuşak CTA</button>
+          <button class="format-chip" onclick="formatSec('cta',this,'Soru CTA')">Soru CTA</button>
+          <button class="format-chip" onclick="formatSec('cta',this,'İndirim/Teklif')">İndirim/Teklif</button>
+        </div>
+        <textarea class="va-textarea" id="ctaMetin" placeholder="CTA nasıl? Ne söyleniyor?"></textarea>
+      </div>
+    </div>
+
+    <!-- Video süresi -->
+    <label class="va-label">Video Süresi</label>
+    <select class="va-select" id="videoSure">
+      <option>15 saniye altı</option>
+      <option selected>15-30 saniye</option>
+      <option>30-60 saniye</option>
+      <option>60-90 saniye</option>
+      <option>90 saniye üzeri</option>
+    </select>
+
+    <!-- Gösterim -->
+    <label class="va-label">Gösterim Sayısı</label>
+    <select class="va-select" id="gosterim">
+      <option>1.000 gösterim (Erken sinyal)</option>
+      <option>10.000 gösterim</option>
+      <option selected>100.000 gösterim</option>
+      <option>1.000.000 gösterim (Full analiz)</option>
+    </select>
+
+    <button class="analiz-btn" id="analizBtn" onclick="videoAnalizYap()">🔍 Videoyu Analiz Et</button>
+
+    <div class="yukleniyor" id="yukleniyor">
+      <div class="spinner"></div>
+      <p style="color:var(--muted);font-size:14px;">Video analiz ediliyor...</p>
+    </div>
+
+    <div class="sonuclar" id="sonuclar"></div>
+
+  </div>
+</div>
+
+<!-- RAKİP ANALİZ -->
+<div class="screen" id="rakip">
+  <div class="va-header">
+    <div class="geri-btn" onclick="git('panel')">←</div>
+    <div class="va-baslik">🥊 Rakip Analiz</div>
+  </div>
+  <div class="rakip-icerik">
+    <div class="rakip-form">
+      <div class="rakip-form-baslik">Rakip Bilgileri</div>
+      <label class="va-label">Rakip Site URL</label>
+      <input class="va-input" id="rakipSite" placeholder="https://rakip.com">
+      <label class="va-label">Facebook Reklam Kütüphanesi URL</label>
+      <input class="va-input" id="rakipFb" placeholder="https://facebook.com/ads/library/...">
+      <label class="va-label">TikTok/Instagram Profil</label>
+      <input class="va-input" id="rakipSosyal" placeholder="@rakipkullanici">
+      <label class="va-label">En Çok Satan Reklam Nedir?</label>
+      <textarea class="va-textarea" id="rakipReklam" placeholder="Rakibin en iyi reklamını tanımla — hook, giriş, gövde, CTA..."></textarea>
+      <label class="va-label">Ürün Adı / Kategorisi</label>
+      <input class="va-input" id="rakipUrun" placeholder="Örn: Bebek taşıyıcı, masaj aleti...">
+      <button class="rakip-btn" onclick="rakipAnalizYap()">🥊 Rakibi Analiz Et</button>
+    </div>
+    <div class="yukleniyor" id="rakipYukleniyor">
+      <div class="spinner"></div>
+      <p style="color:var(--muted);font-size:14px;">Rakip analiz ediliyor...</p>
+    </div>
+    <div id="rakipSonuc"></div>
+  </div>
+</div>
+
+<!-- ARAŞTIR -->
+<div class="screen" id="arastir">
+  <div class="va-header">
+    <div class="geri-btn" onclick="git('panel')">←</div>
+    <div class="va-baslik">🔍 Ürün Araştır</div>
+  </div>
+  <div class="arastir-icerik">
+    <div class="arastir-form">
+      <div class="rakip-form-baslik">Pazar & Yorum Araştırması</div>
+      <label class="va-label">Ürün adı veya kategorisi</label>
+      <input class="va-input" id="arastirUrun" placeholder="Örn: bebek taşıyıcı, masaj aleti...">
+      <label class="va-label">Hedef Pazar</label>
+      <select class="va-select" id="arastirPazar">
+        <option>🇺🇸 ABD</option>
+        <option>🇬🇧 UK</option>
+        <option>🇩🇪 Almanya</option>
+        <option>🇫🇷 Fransa</option>
+        <option>🇳🇱 Hollanda</option>
+        <option>🇦🇺 Avustralya</option>
+      </select>
+      <label class="va-label">İlgili acı / konu (isteğe bağlı)</label>
+      <input class="va-input" id="arastirAci" placeholder="Örn: anne yorgunluğu, sırt ağrısı, bebek ağlaması...">
+      <button class="arastir-btn" onclick="arastirmaYap()">🔍 Araştırmayı Başlat</button>
+    </div>
+    <div class="yukleniyor" id="arastirYukleniyor">
+      <div class="spinner"></div>
+      <p style="color:var(--muted);font-size:14px;">Amazon ve Reddit analiz ediliyor...</p>
+    </div>
+    <div id="arastirSonuc"></div>
   </div>
 </div>
 
 <script>
+// Durum değişkenleri
 let seciliEmoji = '🛍️';
 let seciliPazar = '🇺🇸 ABD';
+let seciliPersona = 'Tamamen Habersiz — Sorunun farkında değil, ilk kez karşılaşıyor.';
+let seciliPlatform = 'TikTok';
+let seciliTur = 'Reklam';
+let formatlar = { hook: '', giris: '', govde: '', cta: '' };
 
-function ekranaGit(id) {
+function git(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 }
 
-function modalAc() {
-  document.getElementById('modalOverlay').classList.add('acik');
+function urunSec(emoji, ad, kat, pazar) {
+  document.getElementById('panelUrunAdi').textContent = emoji + ' ' + ad;
+  document.getElementById('panelUrunKat').textContent = kat + ' · ' + pazar;
+  git('panel');
 }
 
+function tabSec(el, tabId) {
+  document.querySelectorAll('.ntab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  ['panel-tab-panel','panel-tab-videolar','panel-tab-yorumlar','panel-tab-sistem'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  const tab = document.getElementById(tabId);
+  if (tab) tab.style.display = 'block';
+}
+
+function panelNavSec(el, tabId) {
+  document.querySelectorAll('.alt-nav-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function modalAc() { document.getElementById('modalOverlay').classList.add('acik'); }
 function modalKapat(e) {
   if (!e || e.target === document.getElementById('modalOverlay')) {
     document.getElementById('modalOverlay').classList.remove('acik');
@@ -564,43 +779,371 @@ function pazarSec(el) {
 }
 
 function urunEkle() {
-  const ad = document.getElementById('yeniUrunAdi').value.trim();
-  const kat = document.getElementById('yeniUrunKat').value.trim();
-
+  const ad = document.getElementById('yeniAd').value.trim();
+  const kat = document.getElementById('yeniKat').value.trim();
   if (!ad) { alert('Ürün adı gir!'); return; }
-
-  const renkler = ['uk-1','uk-2','uk-3'];
+  const renkler = ['uk-1','uk-2','uk-3','uk-4'];
   const renk = renkler[Math.floor(Math.random() * renkler.length)];
-
   const kart = document.createElement('div');
   kart.className = `urun-karti ${renk}`;
-  kart.onclick = () => ekranaGit('panel');
-  kart.innerHTML = `
-    <div class="urun-emoji">${seciliEmoji}</div>
-    <div class="urun-adi">${ad}</div>
-    <div class="urun-kat">${kat || 'Kategori yok'} · ${seciliPazar}</div>
-    <div class="urun-stat">
-      <span class="stat-etiket"><span class="durum-nokta" style="background:var(--muted)"></span>Yeni</span>
-      <span class="stat-deger" style="color:var(--muted)">—</span>
-    </div>
-    <div class="urun-stat">
-      <span class="stat-etiket">Hook Oranı</span>
-      <span class="stat-deger" style="color:var(--muted)">—</span>
-    </div>
-    <div class="urun-stat">
-      <span class="stat-etiket">ROAS</span>
-      <span class="stat-deger" style="color:var(--muted)">—</span>
-    </div>
-  `;
-
+  kart.onclick = () => urunSec(seciliEmoji, ad, kat || 'Kategori yok', seciliPazar);
+  kart.innerHTML = `<div class="urun-emoji">${seciliEmoji}</div><div class="urun-adi">${ad}</div><div class="urun-kat">${kat||'Kategori yok'} · ${seciliPazar}</div><div class="urun-stat"><span class="stat-etiket"><span class="durum-nokta" style="background:var(--muted)"></span>Yeni</span><span class="stat-deger" style="color:var(--muted)">—</span></div><div class="urun-stat"><span class="stat-etiket">Hook Oranı</span><span class="stat-deger" style="color:var(--muted)">—</span></div><div class="urun-stat"><span class="stat-etiket">ROAS</span><span class="stat-deger" style="color:var(--muted)">—</span></div>`;
   const grid = document.getElementById('urunlerGrid');
-  const ekleKarti = grid.lastElementChild;
-  grid.insertBefore(kart, ekleKarti);
-
-  document.getElementById('yeniUrunAdi').value = '';
-  document.getElementById('yeniUrunKat').value = '';
+  grid.insertBefore(kart, grid.lastElementChild);
+  document.getElementById('yeniAd').value = '';
+  document.getElementById('yeniKat').value = '';
   document.getElementById('modalOverlay').classList.remove('acik');
 }
+
+function platformSec(el) {
+  document.querySelectorAll('.ptab-va').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  seciliPlatform = el.textContent.trim();
+}
+
+function turSec(el) {
+  document.querySelectorAll('.tur-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  seciliTur = el.textContent.replace('📢','').replace('🌱','').trim();
+}
+
+function personaSec(el, val) {
+  document.querySelectorAll('.persona-karti').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  seciliPersona = val;
+}
+
+function bolumAc(id) {
+  const body = document.getElementById(id);
+  body.classList.toggle('acik');
+}
+
+function formatSec(segment, el, val) {
+  el.closest('.format-chips').querySelectorAll('.format-chip').forEach(c => c.classList.remove('secili'));
+  el.classList.add('secili');
+  formatlar[segment] = val;
+  document.getElementById(segment + 'FormatGoster').textContent = val;
+}
+
+async function videoAnalizYap() {
+  const hookMetin = document.getElementById('hookMetin').value;
+  const girisMetin = document.getElementById('girisMetin').value;
+  const govdeMetin = document.getElementById('govdeMetin').value;
+  const ctaMetin = document.getElementById('ctaMetin').value;
+
+  if (!hookMetin && !girisMetin && !govdeMetin && !ctaMetin) {
+    alert('En az bir segmentin içeriğini gir!');
+    return;
+  }
+
+  const urunAdi = document.getElementById('vaUrunAdi').value || 'Belirtilmedi';
+  const anaMessaj = document.getElementById('vaAnaMessaj').value || 'Belirtilmedi';
+  const ozelPersona = document.getElementById('ozelPersona').value;
+  const videoTur = document.getElementById('videoTur').value;
+  const videoSure = document.getElementById('videoSure').value;
+  const gosterim = document.getElementById('gosterim').value;
+  const personaFinal = ozelPersona || seciliPersona;
+
+  const prompt = `Sen bir Facebook/TikTok/Instagram reklam videosu analiz uzmanısın. Türkçe, detaylı ve dürüst analiz yapıyorsun.
+
+VİDEO BİLGİLERİ:
+- Platform: ${seciliPlatform}
+- İçerik türü: ${seciliTur}
+- Video türü: ${videoTur}
+- Ürün: ${urunAdi}
+- Ana mesaj: ${anaMessaj}
+- Persona: ${personaFinal}
+- Video süresi: ${videoSure}
+- Gösterim seviyesi: ${gosterim}
+
+SEGMENTLER:
+1. HOOK (Format: ${formatlar.hook||'Belirtilmedi'}): ${hookMetin||'Girilmedi'}
+2. GİRİŞ (Format: ${formatlar.giris||'Belirtilmedi'}): ${girisMetin||'Girilmedi'}
+3. GÖVDE (Format: ${formatlar.govde||'Belirtilmedi'}): ${govdeMetin||'Girilmedi'}
+4. CTA (Format: ${formatlar.cta||'Belirtilmedi'}): ${ctaMetin||'Girilmedi'}
+
+JSON formatında yanıt ver, başka hiçbir şey yazma:
+{
+  "genelSkor": 75,
+  "genelKarar": "İYİ",
+  "genelOzet": "Tek cümle özet",
+  "hook3sn": {
+    "karar": "GÜÇLÜ",
+    "analiz": "İlk 3 saniye analizi",
+    "risk": "Kaybetme riski"
+  },
+  "segmentler": [
+    {"ad":"Hook","no":"01","karar":"GÜÇLÜ","skor":80,"iyi":"İyi olan","kotu":"Eksik olan","oneri":"Spesifik öneri"},
+    {"ad":"Giriş","no":"02","karar":"ORTA","skor":65,"iyi":"İyi olan","kotu":"Eksik olan","oneri":"Öneri"},
+    {"ad":"Gövde","no":"03","karar":"ORTA","skor":70,"iyi":"İyi olan","kotu":"Eksik olan","oneri":"Öneri"},
+    {"ad":"CTA","no":"04","karar":"ZAYIF","skor":55,"iyi":"İyi olan","kotu":"Eksik olan","oneri":"Öneri"}
+  ],
+  "personaUyumu": "Bu persona için videonun uygunluğu",
+  "platformNotu": "Bu platform için özel not",
+  "gosterimAnalizi": "Bu gösterim seviyesinde ne söylenebilir",
+  "sonrakiAdimlar": ["Adım 1","Adım 2","Adım 3","Adım 4","Adım 5"]
+}`;
+
+  document.getElementById('analizBtn').disabled = true;
+  document.getElementById('yukleniyor').classList.add('goster');
+  document.getElementById('sonuclar').classList.remove('goster');
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await response.json();
+    const text = data.content.map(i => i.text || '').join('');
+    const clean = text.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(clean);
+    analizSonucGoster(parsed);
+  } catch (err) {
+    document.getElementById('sonuclar').innerHTML = '<p style="color:var(--red);padding:16px;">Hata oluştu, tekrar dene.</p>';
+    document.getElementById('sonuclar').classList.add('goster');
+  } finally {
+    document.getElementById('yukleniyor').classList.remove('goster');
+    document.getElementById('analizBtn').disabled = false;
+  }
+}
+
+function skorSinifi(skor) {
+  if (skor >= 75) return 'sd-iyi';
+  if (skor >= 50) return 'sd-orta';
+  return 'sd-kotu';
+}
+
+function kararSinifi(k) {
+  if (!k) return 'karar-orta';
+  if (k.includes('GÜÇLÜ') || k.includes('İYİ')) return 'karar-iyi';
+  if (k.includes('ORTA')) return 'karar-orta';
+  return 'karar-kotu';
+}
+
+function bolumNo(ad) {
+  const m = {'Hook':'vno-1','Giriş':'vno-2','Gövde':'vno-3','CTA':'vno-4'};
+  return m[ad] || 'vno-1';
+}
+
+function analizSonucGoster(d) {
+  const c = document.getElementById('sonuclar');
+  let segHTML = '';
+  (d.segmentler||[]).forEach(s => {
+    segHTML += `<div class="sonuc-bolum">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span class="va-no ${bolumNo(s.ad)}">${s.no}</span>
+        <span style="font-weight:600;font-size:14px;">${s.ad}</span>
+        <span class="karar ${kararSinifi(s.karar)}">${s.karar} · ${s.skor}/100</span>
+      </div>
+      <div class="sonuc-metin">✅ ${s.iyi}\n\n❌ ${s.kotu}\n\n💡 ${s.oneri}</div>
+    </div>`;
+  });
+  let adimHTML = '';
+  (d.sonrakiAdimlar||[]).forEach((a,i) => {
+    adimHTML += `<div class="adim"><span class="adim-no">0${i+1}</span><span>${a}</span></div>`;
+  });
+  c.innerHTML = `
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;margin-top:16px;">
+      <div class="skor-daire ${skorSinifi(d.genelSkor)}">${d.genelSkor}</div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;">${d.genelKarar}</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px;">${d.genelOzet}</div>
+      </div>
+    </div>
+    <div class="hook-kutu">
+      <div class="hook-kutu-baslik">⚡ İlk 3 Saniye Analizi</div>
+      <span class="karar ${kararSinifi(d.hook3sn?.karar)}" style="display:inline-block;margin-bottom:8px;">${d.hook3sn?.karar||''}</span>
+      <div class="sonuc-metin">${d.hook3sn?.analiz||''}</div>
+      ${d.hook3sn?.risk ? `<div style="margin-top:8px;font-size:11px;color:var(--red);">⚠️ ${d.hook3sn.risk}</div>` : ''}
+    </div>
+    ${segHTML}
+    <div class="sonuc-bolum" style="border-color:rgba(124,111,250,0.3);">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--purple);text-transform:uppercase;margin-bottom:8px;">👤 Persona Uyumu</div>
+      <div class="sonuc-metin">${d.personaUyumu||''}</div>
+    </div>
+    <div class="sonuc-bolum" style="border-color:rgba(34,211,238,0.3);">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--cyan);text-transform:uppercase;margin-bottom:8px;">📱 Platform Notu</div>
+      <div class="sonuc-metin">${d.platformNotu||''}</div>
+    </div>
+    <div class="sonuc-bolum" style="border-color:rgba(251,191,36,0.3);">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--amber);text-transform:uppercase;margin-bottom:8px;">📊 Gösterim Analizi</div>
+      <div class="sonuc-metin">${d.gosterimAnalizi||''}</div>
+    </div>
+    <div class="sonraki-adimlar">
+      <div class="sa-baslik">🚀 Sonraki Adımlar</div>
+      ${adimHTML}
+    </div>
+    <button class="sifirla-btn" onclick="sifirla()">← Yeni Analiz Yap</button>
+  `;
+  c.classList.add('goster');
+  c.scrollIntoView({ behavior: 'smooth' });
+}
+
+function sifirla() {
+  document.getElementById('sonuclar').classList.remove('goster');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function rakipAnalizYap() {
+  const site = document.getElementById('rakipSite').value;
+  const reklam = document.getElementById('rakipReklam').value;
+  const urun = document.getElementById('rakipUrun').value;
+  if (!reklam && !urun) { alert('En az ürün adı veya reklam açıklaması gir!'); return; }
+
+  document.getElementById('rakipYukleniyor').classList.add('goster');
+  document.getElementById('rakipSonuc').innerHTML = '';
+
+  const prompt = `Sen bir dropshipping reklam stratejisti ve rakip analiz uzmanısın. Türkçe analiz yap.
+
+RAKİP BİLGİLERİ:
+- Site: ${site||'Belirtilmedi'}
+- Ürün/Kategori: ${urun||'Belirtilmedi'}
+- En iyi reklam: ${reklam||'Belirtilmedi'}
+
+Şunları analiz et ve JSON döndür:
+{
+  "ozet": "3 satır genel özet",
+  "hookAnalizi": {"tur":"Hook türü","guc":"Güçlü mü zayıf mı","neden":"Neden"},
+  "personaAnalizi": "Kime konuşuyor, hangi Schwartz aşaması",
+  "duygu": "Hangi duyguyu kullanıyor",
+  "govdeYaklasimlari": "Gövdede ne yapıyor",
+  "ctaAnalizi": "CTA'sı nasıl",
+  "bizimIcinOneri": ["Oneri 1","Oneri 2","Oneri 3","Oneri 4"],
+  "kacirdigiAcilar": ["Kaçırdığı acı 1","Kaçırdığı acı 2"],
+  "bizimFirsatimiz": "Biz buradan nasıl fırsatlanabiliriz"
+}`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await response.json();
+    const text = data.content.map(i => i.text || '').join('');
+    const clean = text.replace(/```json|```/g, '').trim();
+    const d = JSON.parse(clean);
+
+    let oneriHTML = (d.bizimIcinOneri||[]).map((o,i) => `<div class="adim"><span class="adim-no">0${i+1}</span><span>${o}</span></div>`).join('');
+    let kacirdiHTML = (d.kacirdigiAcilar||[]).map(a => `<div style="font-size:12px;padding:6px 0;border-bottom:1px solid var(--border);color:var(--red);">❌ ${a}</div>`).join('');
+
+    document.getElementById('rakipSonuc').innerHTML = `
+      <div class="sonuc-bolum"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--purple);text-transform:uppercase;margin-bottom:8px;">📊 Genel Özet</div><div class="sonuc-metin">${d.ozet}</div></div>
+      <div class="sonuc-bolum"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--red);text-transform:uppercase;margin-bottom:8px;">⚡ Hook Analizi</div><div class="sonuc-metin"><strong>${d.hookAnalizi?.tur}</strong> — ${d.hookAnalizi?.guc}\n${d.hookAnalizi?.neden}</div></div>
+      <div class="sonuc-bolum"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--purple2);text-transform:uppercase;margin-bottom:8px;">👤 Persona</div><div class="sonuc-metin">${d.personaAnalizi}</div></div>
+      <div class="sonuc-bolum"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--amber);text-transform:uppercase;margin-bottom:8px;">😤 Duygu</div><div class="sonuc-metin">${d.duygu}</div></div>
+      <div class="sonuc-bolum"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--red);text-transform:uppercase;margin-bottom:8px;">❌ Kaçırdığı Acılar</div>${kacirdiHTML}</div>
+      <div class="sonraki-adimlar"><div class="sa-baslik">💡 Bizim İçin Öneriler</div>${oneriHTML}</div>
+      <div class="sonuc-bolum" style="border-color:rgba(52,211,153,0.3);"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-bottom:8px;">🚀 Bizim Fırsatımız</div><div class="sonuc-metin">${d.bizimFirsatimiz}</div></div>
+    `;
+  } catch(e) {
+    document.getElementById('rakipSonuc').innerHTML = '<p style="color:var(--red);padding:16px;">Hata oluştu, tekrar dene.</p>';
+  } finally {
+    document.getElementById('rakipYukleniyor').classList.remove('goster');
+  }
+}
+
+async function arastirmaYap() {
+  const urun = document.getElementById('arastirUrun').value.trim();
+  if (!urun) { alert('Ürün adı gir!'); return; }
+  const pazar = document.getElementById('arastirPazar').value;
+  const aci = document.getElementById('arastirAci').value;
+
+  document.getElementById('arastirYukleniyor').classList.add('goster');
+  document.getElementById('arastirSonuc').innerHTML = '';
+
+  const prompt = `Sen bir dropshipping pazar araştırma uzmanısın. Amazon ve Reddit yorum analizi yapıyorsun. Türkçe yanıt ver.
+
+ARAŞTIRMA:
+- Ürün: ${urun}
+- Pazar: ${pazar}
+- İlgili acı: ${aci||'Belirtilmedi'}
+
+Bu ürün kategorisinde tipik Amazon/Reddit yorumlarına ve pazar verilerine dayanarak analiz yap. JSON döndür:
+{
+  "enBuyukAcilar": [
+    {"aci":"Acı 1","sıklık":"Çok Yüksek","ornekYorum":"Tipik yorum örneği"},
+    {"aci":"Acı 2","sıklık":"Yüksek","ornekYorum":"Tipik yorum örneği"},
+    {"aci":"Acı 3","sıklık":"Orta","ornekYorum":"Tipik yorum örneği"},
+    {"aci":"Acı 4","sıklık":"Orta","ornekYorum":"Tipik yorum örneği"},
+    {"aci":"Acı 5","sıklık":"Düşük","ornekYorum":"Tipik yorum örneği"}
+  ],
+  "enCokKullanilanKelimeler": ["kelime1","kelime2","kelime3","kelime4","kelime5","kelime6","kelime7","kelime8"],
+  "pozitifTetikleyiciler": ["Pozitif 1","Pozitif 2","Pozitif 3"],
+  "negatifKorkular": ["Korku 1","Korku 2","Korku 3"],
+  "onerilenenPersonalar": [
+    {"ad":"Persona Adı","schwartz":"Acı Farkında","aciklamaKisa":"Kısa açıklama","hookOnerisi":"Hook önerisi"},
+    {"ad":"Persona 2","schwartz":"Çözüm Arıyor","aciklamaKisa":"Kısa","hookOnerisi":"Hook önerisi"},
+    {"ad":"Persona 3","schwartz":"Habersiz","aciklamaKisa":"Kısa","hookOnerisi":"Hook önerisi"}
+  ],
+  "pazarFirsati": "Bu pazarda büyük fırsat nedir"
+}`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await response.json();
+    const text = data.content.map(i => i.text || '').join('');
+    const clean = text.replace(/```json|```/g, '').trim();
+    const d = JSON.parse(clean);
+
+    let aciHTML = (d.enBuyukAcilar||[]).map(a => `
+      <div class="yorum-karti" style="margin-bottom:10px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <div class="yorum-konu">${a.aci}</div>
+          <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:rgba(248,113,113,0.15);color:var(--red);font-family:'DM Mono',monospace;">${a.sıklık}</span>
+        </div>
+        <div style="font-size:11px;color:var(--muted);font-style:italic;">"${a.ornekYorum}"</div>
+      </div>`).join('');
+
+    let kelimeHTML = (d.enCokKullanilanKelimeler||[]).map(k => `<span style="font-size:12px;padding:5px 12px;border-radius:20px;background:rgba(124,111,250,0.15);color:var(--purple2);border:1px solid rgba(124,111,250,0.2);">${k}</span>`).join(' ');
+
+    let personaHTML = (d.onerilenenPersonalar||[]).map(p => `
+      <div class="ogren-karti" style="margin-bottom:8px;">
+        <div style="font-size:13px;font-weight:700;margin-bottom:4px;">${p.ad}</div>
+        <div style="font-size:10px;color:var(--purple2);font-family:'DM Mono',monospace;margin-bottom:6px;">${p.schwartz}</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">${p.aciklamaKisa}</div>
+        <div style="font-size:12px;background:var(--s2);padding:8px;border-radius:8px;">💡 Hook önerisi: ${p.hookOnerisi}</div>
+      </div>`).join('');
+
+    document.getElementById('arastirSonuc').innerHTML = `
+      <div class="sec-etiket">😓 En Büyük Acılar</div>
+      ${aciHTML}
+      <div class="sec-etiket">🔑 En Çok Kullanılan Kelimeler</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">${kelimeHTML}</div>
+      <div class="sec-etiket">✅ Pozitif Tetikleyiciler</div>
+      ${(d.pozitifTetikleyiciler||[]).map(p => `<div class="uyari-karti iyi"><div class="uyari-ikon">✅</div><div>${p}</div></div>`).join('')}
+      <div class="sec-etiket">⚠️ Negatif Korkular</div>
+      ${(d.negatifKorkular||[]).map(k => `<div class="uyari-karti kotu"><div class="uyari-ikon">⚠️</div><div>${k}</div></div>`).join('')}
+      <div class="sec-etiket">👤 Önerilen Personalar</div>
+      ${personaHTML}
+      <div class="sonraki-adimlar"><div class="sa-baslik">🚀 Pazar Fırsatı</div><div style="font-size:13px;line-height:1.6;">${d.pazarFirsati}</div></div>
+    `;
+  } catch(e) {
+    document.getElementById('arastirSonuc').innerHTML = '<p style="color:var(--red);padding:16px;">Hata oluştu, tekrar dene.</p>';
+  } finally {
+    document.getElementById('arastirYukleniyor').classList.remove('goster');
+  }
+}
+
+// İlk bolumu aç
+bolumAc('hook');
 </script>
 </body>
 </html>
